@@ -19,7 +19,7 @@ class _AgendaState extends State<Agenda> {
           backgroundColor: const Color.fromARGB(255, 0, 131, 202),
           centerTitle: true,
           title: Text(
-            "Novo Agendamento",
+            "Agendamentos",
             style: TextStyle(color: Colors.white),
           ),
         ),
