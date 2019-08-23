@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum OrderOptions { sair }
+
 class Profile extends StatefulWidget {
   @override
   _ProfileState createState() => _ProfileState();
@@ -21,6 +23,17 @@ class _ProfileState extends State<Profile> {
             "Perfil",
             style: TextStyle(color: Colors.white),
           ),
+          actions: <Widget>[
+            PopupMenuButton<OrderOptions>(
+              itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+                const PopupMenuItem<OrderOptions>(
+                  child: Text("Sair"),
+                  value: OrderOptions.sair,
+                ),
+              ],
+              onSelected: logout,
+            )
+          ],
         ),
         body: Column(
           children: <Widget>[
@@ -76,5 +89,9 @@ class _ProfileState extends State<Profile> {
             )
           ],
         ));
+  }
+
+  void logout(OrderOptions result) {
+    print("Saiu");
   }
 }
