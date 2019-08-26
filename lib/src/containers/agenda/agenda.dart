@@ -21,7 +21,6 @@ class _AgendaState extends State<Agenda> {
           "Agendamentos",
           style: TextStyle(color: Colors.white),
         ),
-        
       ),
       body: Column(
         children: <Widget>[
@@ -81,46 +80,17 @@ class _AgendaState extends State<Agenda> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Studio Vida em Fios",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 7),
+                      child: Text(
+                        "Studio Vida em Fios",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      ),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Data: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text("23/09/2019"),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Hora: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text("13:30"),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Serviço: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text("Corte de Cabelo"),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          "Tempo: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text("30 minutos"),
-                      ],
-                    )
+                    fieldsAgenda("Data", "23/09/2019"),
+                    fieldsAgenda("Hora", "13:30"),
+                    fieldsAgenda("Serviço", "Corte de Cabelo"),
+                    fieldsAgenda("Tempo", "30 minutos")
                   ],
                 ),
               ))
@@ -128,6 +98,18 @@ class _AgendaState extends State<Agenda> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget fieldsAgenda(String title, String value) {
+    return Row(
+      children: <Widget>[
+        Text(
+          "${title}: ",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text("${value}"),
+      ],
     );
   }
 }
