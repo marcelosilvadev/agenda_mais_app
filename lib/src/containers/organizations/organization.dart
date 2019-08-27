@@ -9,7 +9,6 @@ class _OrganizationState extends State<Organization> {
   @override
   void initState() {
     super.initState();
-  
   }
 
   @override
@@ -23,7 +22,7 @@ class _OrganizationState extends State<Organization> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: Column(
+        body: ListView(
           children: <Widget>[],
         ));
   }
