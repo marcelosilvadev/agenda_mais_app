@@ -1,7 +1,5 @@
 import 'package:agenda_mais_app/src/containers/new_schedule/schedule.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class Agenda extends StatefulWidget {
   @override
@@ -12,7 +10,6 @@ class _AgendaState extends State<Agenda> {
   bool load = true;
   @override
   Widget build(BuildContext context) {
-    final format = DateFormat("dd-MM-yyyy");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 131, 202),

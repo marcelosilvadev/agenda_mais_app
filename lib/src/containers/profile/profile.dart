@@ -62,8 +62,7 @@ class _ProfileState extends State<Profile> {
                   fieldProfile("Cpf", "448.077.456-42"),
                   fieldProfile("Data Nascimento", "26/12/1997"),
                   fieldProfile("Sexo", "Masculino"),
-                  fieldProfile("Email", "marcelosilva473@hotmail.com"),
-                  fieldProfile("Telefone", "(16)3702-2058"),
+                  fieldProfile("Email", "marcelosilva473@hotmail.com"),                  
                   fieldProfile("Celular", "(16)9 9236-2117"),
                   fieldProfile("Cidade", "Franca - SP")
                 ],
