@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-import 'widgets/tab_navigation.dart';
+import 'package:agenda_mais_app/src/containers/login/login_screen.dart';
+import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
   
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Agenda+',
       debugShowCheckedModeBanner:false,
-      home: TabBarScreen(),
+      home: LoginScreen(),
     );
   }
 }

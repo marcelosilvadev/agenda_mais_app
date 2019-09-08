@@ -12,7 +12,7 @@ class _AgendaState extends State<Agenda> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 131, 202),
+        backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
         centerTitle: true,
         title: Text(
           "Agendamentos",
@@ -49,6 +49,7 @@ class _AgendaState extends State<Agenda> {
         },
         tooltip: 'Novo Agendamento',
         child: Icon(Icons.add),
+        backgroundColor: Color.fromRGBO(247, 64, 106, 1.0),
       ),
     );
   }

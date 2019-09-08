@@ -34,10 +34,10 @@ Widget TabBarScreen (){
         
         labelStyle: TextStyle(fontSize: 10),
         labelColor: Colors.white,
-        unselectedLabelColor: Color.fromARGB(255, 0, 97, 149),
+        unselectedLabelColor: Color.fromRGBO(200, 64, 86, 1.0),
         indicatorColor: Colors.white,
       ),
-      backgroundColor: const Color.fromARGB(255, 0, 131, 202),
+      backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
     ),
   );
 }

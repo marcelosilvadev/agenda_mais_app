@@ -25,7 +25,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 131, 202),
+        backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
         centerTitle: true,
         title: Text(
           "Detalhes",
@@ -43,7 +43,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
               dotSize: 5.0,
               dotSpacing: 15.0,
               dotBgColor: Colors.transparent,
-              dotColor: Colors.blue,
+              dotColor: Color.fromRGBO(247, 64, 106, 1.0),
               autoplay:
                   false, //Utiliza-se true para rodar as imagens automaticamente dos carrosseis
             ),
@@ -56,7 +56,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                 Text(
                   "Descrição",
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(247, 64, 106, 1.0),
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -68,7 +68,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                 Text(
                   "Serviços Prestados",
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(247, 64, 106, 1.0),
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -80,7 +80,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                 Text(
                   "Endereço",
                   style: TextStyle(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(247, 64, 106, 1.0),
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold),
                 ),
@@ -148,8 +148,9 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
         tooltip: 'Favoritar Estabelecimento',
         child: Icon(
           check == true ? Icons.star : Icons.star_border,
-          color: Colors.amber,
+          color: Colors.amber,          
         ),
+        backgroundColor: Color.fromRGBO(247, 64, 106, 1.0),
       ),
     );
   }

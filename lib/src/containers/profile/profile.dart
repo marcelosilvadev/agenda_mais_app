@@ -1,3 +1,4 @@
+import 'package:agenda_mais_app/src/containers/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 enum OrderOptions { sair }
@@ -17,7 +18,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 131, 202),
+          backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
           centerTitle: true,
           title: Text(
             "Perfil",
@@ -45,13 +46,13 @@ class _ProfileState extends State<Profile> {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage("assets/images/vendedor.png"))),
+                        image: AssetImage("assets/images/perfil.jpeg"))),
               ),
             ),
             Text(
-              "Herminio Nascimento",
+              "Marcelo de Andrade Silva",
               style: TextStyle(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(247, 64, 106, 1.0),
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold),
             ),
@@ -62,7 +63,7 @@ class _ProfileState extends State<Profile> {
                   fieldProfile("Cpf", "448.077.456-42"),
                   fieldProfile("Data Nascimento", "26/12/1997"),
                   fieldProfile("Sexo", "Masculino"),
-                  fieldProfile("Email", "marcelosilva473@hotmail.com"),                  
+                  fieldProfile("Email", "marcelosilva473@hotmail.com"),
                   fieldProfile("Celular", "(16)9 9236-2117"),
                   fieldProfile("Cidade", "Franca - SP")
                 ],
@@ -91,6 +92,7 @@ class _ProfileState extends State<Profile> {
   }
 
   void logout(OrderOptions result) {
-    print("Saiu");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 }

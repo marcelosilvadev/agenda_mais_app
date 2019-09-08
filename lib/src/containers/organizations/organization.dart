@@ -18,7 +18,7 @@ class _OrganizationState extends State<Organization> {
     bool load = true;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 131, 202),
+          backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
           centerTitle: true,
           title: Text(
             "Estabelecimentos",
