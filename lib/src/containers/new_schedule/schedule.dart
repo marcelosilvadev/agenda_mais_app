@@ -1,3 +1,4 @@
+import 'package:agenda_mais_app/src/widgets/splah_okay.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -212,7 +213,10 @@ class _NewScheduleState extends State<NewSchedule> {
                   child: Container(
                       height: 50.0,
                       child: RaisedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => SplashOkay()));
+                        },
                         child: Text(
                           "Agendar",
                           style: TextStyle(color: Colors.white, fontSize: 17.0),
