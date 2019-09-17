@@ -22,24 +22,24 @@ class _SplashOkayState extends State<SplashOkay> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              height: 250,
-              width: 250,
-              child: FlareActor(
-                "assets/images/okay.flr",
-                animation: "okay",
-              ),
-            ),
-            Text(
-              "Agendamento Realizado!",
-              style: TextStyle(
-                  fontSize: 25.0, color: Color.fromARGB(255, 122, 122, 122)),
-              textAlign: TextAlign.center,
-            )
-          ],
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Container(
+          height: 250,
+          width: 250,
+          child: FlareActor(
+            "assets/images/okay.flr",
+            animation: "okay",
+          ),
+        ),
+        Text(
+          "Agendamento Realizado!",
+          style: TextStyle(
+              fontSize: 25.0, color: Color.fromARGB(255, 122, 122, 122)),
+          textAlign: TextAlign.center,
+        )
+      ],
+    ));
   }
 }

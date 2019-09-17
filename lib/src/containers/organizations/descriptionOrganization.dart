@@ -2,27 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class DescriptionOrganization extends StatefulWidget {
+
+  final Map data;
+  DescriptionOrganization(this.data);
+
   @override
   _DescriptionOrganizationState createState() =>
-      _DescriptionOrganizationState();
+      _DescriptionOrganizationState(data);
 }
 
 class _DescriptionOrganizationState extends State<DescriptionOrganization> {
+  final Map data;
+  _DescriptionOrganizationState(this.data);
+
+  var check = false;
+
   @override
   void initState() {
     super.initState();
+    print(data);
+    data["images"].map((url) {
+      print("Image ${url["url"]}");
+    });
   }
 
-  var check = true;
   var images = [
     "https://cdn.shoppub.com.br/ferricelli/media/cache/5f/61/5f6161abf1c06070c249b3255ee80b26.jpg",
     "https://cdn.shoppub.com.br/ferricelli/media/cache/63/e6/63e6238b14aef554bdb8c01d366b4bb5.jpg"
   ];
-  var lorem =
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and.";
+
   var services = "- Corte \n- Escova \n- Barba";
   @override
   Widget build(BuildContext context) {
+    check = data["favorites"];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
@@ -37,8 +49,8 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
           AspectRatio(
             aspectRatio: 0.9,
             child: Carousel(
-              images: images.map((url) {
-                return NetworkImage(url);
+              images: data["images"].map((url) {
+                return NetworkImage(url["url"]);
               }).toList(),
               dotSize: 5.0,
               dotSpacing: 15.0,
@@ -61,7 +73,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  lorem,
+                  "${data["description"]}",
                   style: TextStyle(fontSize: 17),
                 ),
                 Divider(),
@@ -91,7 +103,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
-                    Text("Eliza Verzola Gosuem",
+                    Text("${data["address"]["rua"]}",
                         style: TextStyle(fontSize: 17)),
                   ],
                 ),
@@ -103,7 +115,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                     Text(
-                      "3404",
+                      "${data["address"]["numero"]}",
                       style: TextStyle(fontSize: 17),
                     ),
                   ],
@@ -116,7 +128,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                     Text(
-                      "Prolongamento Angela Rosa",
+                      "${data["address"]["bairro"]}",
                       style: TextStyle(fontSize: 17),
                     ),
                   ],
@@ -129,7 +141,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                     Text(
-                      "14403-734",
+                      "${data["address"]["cep"]}",
                       style: TextStyle(fontSize: 17),
                     ),
                   ],
@@ -148,7 +160,7 @@ class _DescriptionOrganizationState extends State<DescriptionOrganization> {
         tooltip: 'Favoritar Estabelecimento',
         child: Icon(
           check == true ? Icons.star : Icons.star_border,
-          color: Colors.amber,          
+          color: Colors.amber,
         ),
         backgroundColor: Color.fromRGBO(247, 64, 106, 1.0),
       ),

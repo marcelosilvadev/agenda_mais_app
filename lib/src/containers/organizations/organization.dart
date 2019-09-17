@@ -1,5 +1,7 @@
 import 'package:agenda_mais_app/src/containers/organizations/descriptionOrganization.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Organization extends StatefulWidget {
   @override
@@ -7,15 +9,35 @@ class Organization extends StatefulWidget {
 }
 
 class _OrganizationState extends State<Organization> {
+
+  List response;
+  bool load = false;
+
+  Future<Map> _getOrganizations() async {
+    http.Response response;
+    response = await http
+        .get("http://www.mocky.io/v2/5d804dcd3000005a3e8e6d66");
+
+    return json.decode(response.body);
+  }
+
   @override
   void initState() {
     super.initState();
+
+    _getOrganizations().then((res) {
+      setState(() {
+        response = res["data"];
+        load = true;
+      });
+    });
   }
+
 
   var check = true;
   @override
   Widget build(BuildContext context) {
-    bool load = true;
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(247, 64, 106, 1.0),
@@ -32,9 +54,9 @@ class _OrganizationState extends State<Organization> {
                     child: ListView.builder(
                         padding:
                             EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                        itemCount: 5,
+                        itemCount: response.length,
                         itemBuilder: (context, index) {
-                          return _organizationCard(context, index);
+                          return _organizationCard(context, index, response);
                         }),
                   )
                 : Expanded(
@@ -51,13 +73,12 @@ class _OrganizationState extends State<Organization> {
         ));
   }
 
-  Widget _organizationCard(BuildContext context, int index) {
-    var imageUrl =
-        "https://casaefesta.com/wp-content/uploads/2015/02/decoracao-de-salao-de-beleza-tudo-o-que-voce-precisa-saber-58.jpg";
+  Widget _organizationCard(BuildContext context, int index, List response) {
+
     return InkWell(
       onTap: () async {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DescriptionOrganization()));
+            MaterialPageRoute(builder: (context) => DescriptionOrganization(response[index])));
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 5.0),
@@ -68,9 +89,10 @@ class _OrganizationState extends State<Organization> {
                 width: 150.0,
                 height: 150.0,
                 decoration: BoxDecoration(
-                    image: DecorationImage(image: NetworkImage(imageUrl))),
+                    image: DecorationImage(image: NetworkImage(response[index]["principalImage"]))),
               ),
               Flexible(
+                flex: 1,
                   child: Padding(
                 padding: EdgeInsets.only(left: 7),
                 child: Column(
@@ -79,18 +101,19 @@ class _OrganizationState extends State<Organization> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 7),
                       child: Text(
-                        "Studio Vida em Fios",
+                        "${response[index]["name"]}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
                     ),
-                    fieldsOrganization("Ramo", "Cabelo"),
+
+                    fieldsOrganization("Ramo", "${response[index]["ramo"]}"),
                   ],
                 ),
               )),
               IconButton(
                 icon: Icon(
-                  check == true ? Icons.star : Icons.star_border,
+                  response[index]["favorites"] == true ? Icons.star : Icons.star_border,
                   size: 32,
                   color: Colors.amber,
                 ),
@@ -110,11 +133,16 @@ class _OrganizationState extends State<Organization> {
   Widget fieldsOrganization(String title, String value) {
     return Row(
       children: <Widget>[
-        Text(
-          "${title}: ",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        Flexible(
+          child: Text(
+            "${title}: ",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-        Text("${value}"),
+        Flexible(
+          child: Text("${value}"),
+        )
+
       ],
     );
   }
