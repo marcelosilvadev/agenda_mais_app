@@ -1,5 +1,7 @@
 import 'package:agenda_mais_app/src/containers/new_schedule/schedule.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Agenda extends StatefulWidget {
   @override
@@ -7,7 +9,29 @@ class Agenda extends StatefulWidget {
 }
 
 class _AgendaState extends State<Agenda> {
-  bool load = true;
+  bool load = false;
+  List response;
+
+  Future<Map> _getAgenda() async {
+    http.Response response;
+    response = await http
+        .get("http://www.mocky.io/v2/5d8171dc300000e325699695");
+
+    return json.decode(response.body);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getAgenda().then((res) {
+      setState(() {
+        response = res["data"];
+        load = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +49,9 @@ class _AgendaState extends State<Agenda> {
               ? Expanded(
                   child: ListView.builder(
                       padding: EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                      itemCount: 5,
+                      itemCount: response.length,
                       itemBuilder: (context, index) {
-                        return _agendaCard(context, index);
+                        return _agendaCard(context, index, response);
                       }),
                 )
               : Expanded(
@@ -54,9 +78,7 @@ class _AgendaState extends State<Agenda> {
     );
   }
 
-  Widget _agendaCard(BuildContext context, int index) {
-    var imageUrl =
-        "https://casaefesta.com/wp-content/uploads/2015/02/decoracao-de-salao-de-beleza-tudo-o-que-voce-precisa-saber-58.jpg";
+  Widget _agendaCard(BuildContext context, int index, response) {
     return InkWell(
       onTap: () async {
         print("");
@@ -70,7 +92,7 @@ class _AgendaState extends State<Agenda> {
                 width: 150.0,
                 height: 150.0,
                 decoration: BoxDecoration(
-                    image: DecorationImage(image: NetworkImage(imageUrl))),
+                    image: DecorationImage(image: NetworkImage(response[index]["image"]))),
               ),
               Flexible(
                   child: Padding(
@@ -81,14 +103,14 @@ class _AgendaState extends State<Agenda> {
                     Padding(
                       padding: EdgeInsets.only(bottom: 7),
                       child: Text(
-                        "Studio Vida em Fios",
+                        "${response[index]["organization"]}",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                       ),
                     ),
-                    fieldsAgenda("Data", "23/09/2019"),
-                    fieldsAgenda("Hora", "13:30"),
-                    fieldsAgenda("Serviço", "Corte de Cabelo"),
-                    fieldsAgenda("Tempo", "30 minutos")
+                    fieldsAgenda("Data", "${response[index]["data"]}"),
+                    fieldsAgenda("Hora", "${response[index]["hora"]}"),
+                    fieldsAgenda("Serviço", "${response[index]["servico"]}"),
+                    fieldsAgenda("Tempo", "${response[index]["tempo"]}")
                   ],
                 ),
               ))
